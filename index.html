@@ -3,45 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrapbook Memories | Light Edition</title>
+    <title>Scrapbook Memories | Clean Edition</title>
     <style>
         :root {
-            /* লাইট থিম কালার প্যালেট */
             --bg-color: #f0f2f5; 
             --paper: #ffffff;
-            --accent: #ff6b6b; /* সফট রেড অ্যাকসেন্ট */
-            --tape: rgba(0, 0, 0, 0.05);
-            --text-main: #2d3436;
+            --accent: #ff4757; 
+            --text-main: #1e272e;
         }
 
         body {
             background-color: var(--bg-color);
             background-image: 
-                linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
-            background-size: 20px 20px; /* হালকা গ্রিড ব্যাকগ্রাউন্ড */
+                linear-gradient(rgba(0,0,0,0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.01) 1px, transparent 1px);
+            background-size: 25px 25px;
             margin: 0;
             padding: 60px 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             color: var(--text-main);
         }
 
         .main-header {
             text-align: center;
-            margin-bottom: 100px;
+            margin-bottom: 80px;
         }
 
         .main-header h1 {
-            font-size: 2.8rem;
-            font-weight: 300;
+            font-size: 2.5rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 8px;
+            letter-spacing: 6px;
             color: var(--text-main);
-            position: relative;
+            border-bottom: 3px solid var(--accent);
             display: inline-block;
+            padding-bottom: 10px;
         }
 
-        /* পোলারয়েড গ্যালারি */
         .gallery-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -51,23 +49,21 @@
             padding: 20px;
         }
 
-        /* Polaroid Card */
         .polaroid {
             background: var(--paper);
-            padding: 15px 15px 50px 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 15px 15px 55px 15px; /* নিচের অংশ একটু বাড়ানো হয়েছে লেখার জন্য */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            border: 1px solid rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* র্যান্ডম পজিশন */
-        .polaroid:nth-child(odd) { transform: rotate(-2deg); }
-        .polaroid:nth-child(even) { transform: rotate(2deg); }
+        .polaroid:nth-child(odd) { transform: rotate(-1.5deg); }
+        .polaroid:nth-child(even) { transform: rotate(1.5deg); }
 
         .polaroid:hover {
             transform: rotate(0deg) scale(1.05) translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
             z-index: 10;
         }
 
@@ -76,109 +72,110 @@
             height: 280px;
             object-fit: cover;
             display: block;
-            border-bottom: 1px solid #f0f0f0;
         }
 
-        /* ক্ল্যাসিক মাস্কিং টেপ */
+        /* কফি কালার মাস্কিং টেপ */
         .polaroid::before {
             content: '';
             position: absolute;
-            top: -15px;
+            top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            width: 90px;
-            height: 35px;
-            background: rgba(212, 163, 115, 0.2); /* হালকা কফি রঙের টেপ */
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.02);
-            border-left: 2px dashed rgba(0,0,0,0.05);
-            border-right: 2px dashed rgba(0,0,0,0.05);
+            width: 80px;
+            height: 30px;
+            background: rgba(212, 163, 115, 0.25);
+            backdrop-filter: blur(1px);
+            border-left: 1px dashed rgba(0,0,0,0.1);
+            border-right: 1px dashed rgba(0,0,0,0.1);
         }
 
+        /* আপডেট করা বোল্ড ক্যাপশন */
         .caption {
             position: absolute;
             bottom: 15px;
             left: 0;
             width: 100%;
             text-align: center;
-            font-family: 'Dancing Script', cursive, sans-serif; /* হাতের লেখার মতো ফন্ট */
-            font-size: 1.2rem;
-            color: #555;
-            letter-spacing: 1px;
+            font-size: 1.1rem;
+            font-weight: 800; /* এক্সট্রা বোল্ড */
+            color: #2f3542;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+            padding: 0 10px;
+            box-sizing: border-box;
         }
 
-        /* ইন্টারেক্টিভ এলিমেন্ট: হোভার করলে বর্ডার কালার চেঞ্জ */
         .polaroid:hover .caption {
             color: var(--accent);
         }
 
         footer {
             text-align: center;
-            margin-top: 120px;
+            margin-top: 100px;
             font-size: 0.9rem;
-            color: #999;
+            color: #a4b0be;
+            font-weight: bold;
             letter-spacing: 2px;
         }
 
         @media (max-width: 600px) {
-            .main-header h1 { font-size: 1.8rem; letter-spacing: 4px; }
             .gallery-container { grid-template-columns: 1fr; }
             .polaroid { transform: rotate(0deg) !important; }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="main-header">
-        <h1>Life Fragments</h1>
+        <h1>Moments Archive</h1>
     </div>
 
     <div class="gallery-container">
         
         <div class="polaroid">
             <img src="memory1.jpg" alt="Tour">
-            <p class="caption">Study Tour '24</p>
+            <p class="caption">Study Tour 2024</p>
         </div>
 
         <div class="polaroid">
             <img src="memory2.jpg" alt="Friends">
-            <p class="caption">Old School Vibes</p>
+            <p class="caption">With Old School Friends</p>
         </div>
 
         <div class="polaroid">
             <img src="memory3.jpg" alt="High School">
-            <p class="caption">The Final Bell</p>
+            <p class="caption">Last Day Of School</p>
         </div>
 
         <div class="polaroid">
             <img src="memory4.jpg" alt="Eid">
-            <p class="caption">Eid Moments '25</p>
+            <p class="caption">Eid-Ul-Fitr 2025</p>
         </div>
 
         <div class="polaroid">
             <img src="memory5.jpg" alt="Break">
-            <p class="caption">Peaceful Afternoon</p>
+            <p class="caption">At The Playground</p>
         </div>
 
         <div class="polaroid">
             <img src="memory6.jpg" alt="Awesome">
-            <p class="caption">Endless Journey</p>
+            <p class="caption">Unforgettable Tour</p>
         </div>
 
         <div class="polaroid">
             <img src="memory7.jpg" alt="Result">
-            <p class="caption">Day of Success</p>
+            <p class="caption">Result Day 2023</p>
         </div>
 
         <div class="polaroid">
             <img src="memory8.jpg" alt="Class Party">
-            <p class="caption">Unforgettable Days 🥹</p>
+            <p class="caption">Class Party 2019 🥹</p>
         </div>
 
     </div>
 
     <footer>
-        &mdash; MOMENTS FROZEN IN TIME &mdash;
+        before the memory fades...
     </footer>
 
 </body>
