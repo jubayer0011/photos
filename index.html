@@ -3,236 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memorable Events | Jubayer</title>
+    <title>Scrapbook Memories | Light Edition</title>
     <style>
         :root {
-            --bg: #0d0d0f;
-            --card-bg: #16161a;
-            --primary: #00f2ff;
-            --accent: #ff007a;
-            --text: #d1d1d1;
+            /* লাইট থিম কালার প্যালেট */
+            --bg-color: #f0f2f5; 
+            --paper: #ffffff;
+            --accent: #ff6b6b; /* সফট রেড অ্যাকসেন্ট */
+            --tape: rgba(0, 0, 0, 0.05);
+            --text-main: #2d3436;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+            background-size: 20px 20px; /* হালকা গ্রিড ব্যাকগ্রাউন্ড */
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            padding: 60px 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-main);
         }
 
-        /* Modern Glass Header */
-        .header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(22, 22, 26, 0.8);
-            backdrop-filter: blur(15px);
-            padding: 25px;
+        .main-header {
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 100px;
         }
 
-        .header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
+        .main-header h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
             text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(to right, var(--primary), #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Neon Dot */
-        .header h1::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background: var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--primary);
-        }
-
-        /* Responsive Grid Layout */
-        .main-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            column-count: 3; /* Masonry Style */
-            column-gap: 25px;
-        }
-
-        /* Memory Card */
-        .memory-card {
-            break-inside: avoid;
-            background: var(--card-bg);
-            margin-bottom: 25px;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            letter-spacing: 8px;
+            color: var(--text-main);
             position: relative;
+            display: inline-block;
         }
 
-        .memory-card:hover {
-            transform: scale(1.03);
-            border-color: var(--primary);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .memory-card img {
-            width: 100%;
-            display: block;
-            filter: grayscale(20%);
-            transition: 0.4s;
-        }
-
-        .memory-card:hover img {
-            filter: grayscale(0%);
-        }
-
-        .info {
+        /* পোলারয়েড গ্যালারি */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            box-sizing: border-box;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: 0.3s;
         }
 
-        .memory-card:hover .info {
-            opacity: 1;
-            transform: translateY(0);
+        /* Polaroid Card */
+        .polaroid {
+            background: var(--paper);
+            padding: 15px 15px 50px 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        /* র্যান্ডম পজিশন */
+        .polaroid:nth-child(odd) { transform: rotate(-2deg); }
+        .polaroid:nth-child(even) { transform: rotate(2deg); }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05) translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+            z-index: 10;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        /* ক্ল্যাসিক মাস্কিং টেপ */
+        .polaroid::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 35px;
+            background: rgba(212, 163, 115, 0.2); /* হালকা কফি রঙের টেপ */
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.02);
+            border-left: 2px dashed rgba(0,0,0,0.05);
+            border-right: 2px dashed rgba(0,0,0,0.05);
         }
 
         .caption {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #fff;
-            margin: 0;
-        }
-
-        .date-tag {
-            display: inline-block;
-            font-size: 0.7rem;
-            background: var(--primary);
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
-
-        .footer-text {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
             text-align: center;
-            padding: 60px;
+            font-family: 'Dancing Script', cursive, sans-serif; /* হাতের লেখার মতো ফন্ট */
+            font-size: 1.2rem;
             color: #555;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 1px;
         }
 
-        /* Mobile View Optimization */
-        @media (max-width: 900px) {
-            .main-container { column-count: 2; }
+        /* ইন্টারেক্টিভ এলিমেন্ট: হোভার করলে বর্ডার কালার চেঞ্জ */
+        .polaroid:hover .caption {
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 120px;
+            font-size: 0.9rem;
+            color: #999;
+            letter-spacing: 2px;
         }
 
         @media (max-width: 600px) {
-            .main-container { column-count: 1; }
-            .header h1 { font-size: 1.2rem; }
+            .main-header h1 { font-size: 1.8rem; letter-spacing: 4px; }
+            .gallery-container { grid-template-columns: 1fr; }
+            .polaroid { transform: rotate(0deg) !important; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="header">
-        <h1>Memorable Events</h1>
+    <div class="main-header">
+        <h1>Life Fragments</h1>
     </div>
 
-    <div class="main-container">
+    <div class="gallery-container">
         
-        <div class="memory-card">
-            <img src="memory1.jpg" alt="Study Tour">
-            <div class="info">
-                <span class="date-tag">2024</span>
-                <p class="caption">Study tour adventure.</p>
-            </div>
+        <div class="polaroid">
+            <img src="memory1.jpg" alt="Tour">
+            <p class="caption">Study Tour '24</p>
         </div>
 
-        <div class="memory-card">
-            <img src="memory2.jpg" alt="Old Friends">
-            <div class="info">
-                <span class="date-tag">BACK TO ROOTS</span>
-                <p class="caption">With old friends at old school.</p>
-            </div>
+        <div class="polaroid">
+            <img src="memory2.jpg" alt="Friends">
+            <p class="caption">Old School Vibes</p>
         </div>
 
-        <div class="memory-card">
+        <div class="polaroid">
             <img src="memory3.jpg" alt="High School">
-            <div class="info">
-                <span class="date-tag">FAREWELL</span>
-                <p class="caption">Last day of High School.</p>
-            </div>
+            <p class="caption">The Final Bell</p>
         </div>
 
-        <div class="memory-card">
+        <div class="polaroid">
             <img src="memory4.jpg" alt="Eid">
-            <div class="info">
-                <span class="date-tag">EID 2025</span>
-                <p class="caption">Celebration moments.</p>
-            </div>
+            <p class="caption">Eid Moments '25</p>
         </div>
 
-        <div class="memory-card">
+        <div class="polaroid">
             <img src="memory5.jpg" alt="Break">
-            <div class="info">
-                <span class="date-tag">RELAX</span>
-                <p class="caption">Taking break at play ground.</p>
-            </div>
+            <p class="caption">Peaceful Afternoon</p>
         </div>
 
-        <div class="memory-card">
-            <img src="memory6.jpg" alt="Tour">
-            <div class="info">
-                <span class="date-tag">MEMORIES</span>
-                <p class="caption">The Tour was really awesome.</p>
-            </div>
+        <div class="polaroid">
+            <img src="memory6.jpg" alt="Awesome">
+            <p class="caption">Endless Journey</p>
         </div>
 
-        <div class="memory-card">
+        <div class="polaroid">
             <img src="memory7.jpg" alt="Result">
-            <div class="info">
-                <span class="date-tag">SUCCESS 2023</span>
-                <p class="caption">Result day achievement.</p>
-            </div>
+            <p class="caption">Day of Success</p>
         </div>
 
-        <div class="memory-card">
+        <div class="polaroid">
             <img src="memory8.jpg" alt="Class Party">
-            <div class="info">
-                <span class="date-tag">CLASS PARTY 2019</span>
-                <p class="caption">Good old days 🥹</p>
-            </div>
+            <p class="caption">Unforgettable Days 🥹</p>
         </div>
 
     </div>
 
-    <div class="footer-text">
-        thats all for now !
-    </div>
+    <footer>
+        &mdash; MOMENTS FROZEN IN TIME &mdash;
+    </footer>
 
 </body>
 </html>
