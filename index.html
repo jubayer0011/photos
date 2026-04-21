@@ -3,119 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memorable Events</title>
+    <title>Memorable Events | Jubayer</title>
     <style>
+        :root {
+            --bg: #0d0d0f;
+            --card-bg: #16161a;
+            --primary: #00f2ff;
+            --accent: #ff007a;
+            --text: #d1d1d1;
+        }
+
         body {
-            background: linear-gradient(to right, #4facfe, #00f2fe);
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
             margin: 0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            color: white;
+            padding: 0;
+            line-height: 1.6;
         }
+
+        /* Modern Glass Header */
         .header {
-            background-color: #1cc017;
-            color: white;
-            font-size: 4vw;
-            padding: 15px;
-            font-weight: bold;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(22, 22, 26, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 25px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .image-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(to right, var(--primary), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        img {
-            width: 80%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+
+        /* Neon Dot */
+        .header h1::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--primary);
         }
+
+        /* Responsive Grid Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            column-count: 3; /* Masonry Style */
+            column-gap: 25px;
+        }
+
+        /* Memory Card */
+        .memory-card {
+            break-inside: avoid;
+            background: var(--card-bg);
+            margin-bottom: 25px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .memory-card:hover {
+            transform: scale(1.03);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .memory-card img {
+            width: 100%;
+            display: block;
+            filter: grayscale(20%);
+            transition: 0.4s;
+        }
+
+        .memory-card:hover img {
+            filter: grayscale(0%);
+        }
+
+        .info {
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: 0.3s;
+        }
+
+        .memory-card:hover .info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .caption {
-            font-size: 1.5em;
-            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            margin: 0;
+        }
+
+        .date-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: var(--primary);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
             font-weight: bold;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        .footer-text {
+            text-align: center;
+            padding: 60px;
+            color: #555;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Mobile View Optimization */
+        @media (max-width: 900px) {
+            .main-container { column-count: 2; }
+        }
+
+        @media (max-width: 600px) {
+            .main-container { column-count: 1; }
+            .header h1 { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="header">Some memorable events of my life...</div>
 
-<!--image start -->
-
-    <div class="image-container">
-        <img src="memory1.jpg" alt="Study Tour">
+    <div class="header">
+        <h1>Memorable Events</h1>
     </div>
-    <p class="caption">We went on a study tour in 2024 </p>
 
-<!--image end  -->
+    <div class="main-container">
+        
+        <div class="memory-card">
+            <img src="memory1.jpg" alt="Study Tour">
+            <div class="info">
+                <span class="date-tag">2024</span>
+                <p class="caption">Study tour adventure.</p>
+            </div>
+        </div>
 
-<!--image start -->
+        <div class="memory-card">
+            <img src="memory2.jpg" alt="Old Friends">
+            <div class="info">
+                <span class="date-tag">BACK TO ROOTS</span>
+                <p class="caption">With old friends at old school.</p>
+            </div>
+        </div>
 
-    <div class="image-container">
-        <img src="memory2.jpg" alt="Study Tour">
+        <div class="memory-card">
+            <img src="memory3.jpg" alt="High School">
+            <div class="info">
+                <span class="date-tag">FAREWELL</span>
+                <p class="caption">Last day of High School.</p>
+            </div>
+        </div>
+
+        <div class="memory-card">
+            <img src="memory4.jpg" alt="Eid">
+            <div class="info">
+                <span class="date-tag">EID 2025</span>
+                <p class="caption">Celebration moments.</p>
+            </div>
+        </div>
+
+        <div class="memory-card">
+            <img src="memory5.jpg" alt="Break">
+            <div class="info">
+                <span class="date-tag">RELAX</span>
+                <p class="caption">Taking break at play ground.</p>
+            </div>
+        </div>
+
+        <div class="memory-card">
+            <img src="memory6.jpg" alt="Tour">
+            <div class="info">
+                <span class="date-tag">MEMORIES</span>
+                <p class="caption">The Tour was really awesome.</p>
+            </div>
+        </div>
+
+        <div class="memory-card">
+            <img src="memory7.jpg" alt="Result">
+            <div class="info">
+                <span class="date-tag">SUCCESS 2023</span>
+                <p class="caption">Result day achievement.</p>
+            </div>
+        </div>
+
+        <div class="memory-card">
+            <img src="memory8.jpg" alt="Class Party">
+            <div class="info">
+                <span class="date-tag">CLASS PARTY 2019</span>
+                <p class="caption">Good old days 🥹</p>
+            </div>
+        </div>
+
     </div>
-    <p class="caption">With old friends at old school. </p>
 
-<!--image end  -->
-
-<!--image start -->
-
-    <div class="image-container">
-        <img src="memory3.jpg" alt="Study Tour">
+    <div class="footer-text">
+        thats all for now !
     </div>
-    <p class="caption">Last day of High School</p>
 
-<!--image end  -->
-
-<!--image start -->
-
-    <div class="image-container">
-        <img src="memory4.jpg" alt="Study Tour">
-    </div>
-    <p class="caption">Eid 2025 </p>
-
-<!--image end  -->
-
-<!--image start -->
-
-    <div class="image-container">
-        <img src="memory5.jpg" alt="Study Tour">
-    </div>
-    <p class="caption">Taking break at play ground. </p>
-
-<!--image end  -->
-
-    
-<!--image start -->
-
-    <div class="image-container">
-        <img src="memory6.jpg" alt="Study Tour">
-    </div>
-    <p class="caption">The Tour was really awsome</p>
-
-<!--image end  -->
-
-
-    <!--image start -->
-
-    <div class="image-container">
-        <img src="memory7.jpg" alt="Study Tour">
-    </div>
-    <p class="caption">Result day 2023</p>
-
-<!--image end  -->
-
-<!--image start -->
-
-    <div class="image-container">
-        <img src="memory8.jpg" alt="Study Tour">
-    </div>
-    <p class="caption">Class pirty 2019 🥹🥹</p>
-
-<!--image end  -->
-
-    
-<h>thats all for now !</h>
 </body>
 </html>
